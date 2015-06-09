@@ -20,20 +20,21 @@ public class RecyclerViewPager extends RecyclerView {
 
     private RecyclerViewPagerAdapter<?> mViewPagerAdapter;
     private OnScrollListener mOnScrollListener;
-    private float mTriggerOffset = 0.25f;
-    private float mFlingFactor = 0.15f;
+    private float mTriggerOffset;
+    private float mFlingFactor;
     private float mTouchSpan;
 
     public RecyclerViewPager(Context context) {
-        super(context);
+        this(context, null);
     }
 
     public RecyclerViewPager(Context context, AttributeSet attrs) {
-        super(context, attrs);
+        this(context, attrs, 0);
     }
 
     public RecyclerViewPager(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
+        initAttrs(context, attrs, defStyle);
     }
 
     private void initAttrs(Context context, AttributeSet attrs, int defStyle) {
@@ -42,7 +43,6 @@ public class RecyclerViewPager extends RecyclerView {
         mFlingFactor = a.getFloat(R.styleable.RecyclerViewPager_flingFactor, 0.15f);
         mTriggerOffset = a.getFloat(R.styleable.RecyclerViewPager_triggerOffset, 0.25f);
         a.recycle();
-
     }
 
     public void setFlingFactor(float flingFactor) {
@@ -262,6 +262,4 @@ public class RecyclerViewPager extends RecyclerView {
         }
         return position;
     }
-
-
 }
